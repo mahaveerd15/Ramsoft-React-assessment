@@ -66,7 +66,7 @@ const Column = (props) => {
         <div
           onDrop={handleDrop}
           onDragOver={handleDragOver}
-          style={{ border: "1px solid lightgrey", padding: 10 }}
+          style={{ padding: 20 }}
         >
           {props.column.tasks.map((task) => (
             <Task

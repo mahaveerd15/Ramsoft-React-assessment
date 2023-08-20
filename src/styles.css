@@ -34,3 +34,9 @@ margin: 40px 20px;
   background: white;
   width: 300px;
 }
+
+.task-card {
+  padding: 5;
+  background: powderblue !important;
+  border-radius: 5;
+}
