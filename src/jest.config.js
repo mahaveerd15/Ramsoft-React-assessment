@@ -1,7 +1,9 @@
 module.exports = {
-  collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.{js,jsx}'],
-  coverageDirectory: 'coverage',
+  preset: 'babel-jest',
   testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  transform: {
+    '^.+\\.jsx?$': 'babel-jest',
+  },
+  moduleFileExtensions: ['js', 'jsx', 'json', 'node'],
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
 };
