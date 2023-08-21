@@ -40,5 +40,4 @@ describe("Board Component", () => {
     fireEvent.drop(screen.getByText("Column 2"));
     expect(screen.getByText("Task 1")).toBeInTheDocument();
   });
-
 });
