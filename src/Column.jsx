@@ -1,25 +1,35 @@
 import Task from "./Task";
+import { useState } from 'react';
 import { Card, CardContent, Typography, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import CreateTaskModal from './modal/CreateTaskModal';
 
 
 const Column = (props) => {
-  const onClickAdd = () => {
-    const title = prompt("Enter name");
-    const desc = prompt("Enter description");
-    const deadline = prompt("Enter deadline (yyyy-mm-dd)");
+  const [isCreatingTask, setIsCreatingTask] = useState(false);
 
+
+      const openCreateTaskModal = () => {
+    setIsCreatingTask(true);
+  };
+
+  const closeCreateTaskModal = () => {
+    setIsCreatingTask(false);
+  };
+
+const handleCreateTask = (title, desc, deadline) => {
     const task = {
       title,
       desc,
       deadline,
       id: new Date().getTime(),
-      colId: props.column.id
+      colId: props.column.id,
     };
     props.update(props.column.id, {
       ...props.column,
-      tasks: [...props.column.tasks, task]
+      tasks: [...props.column.tasks, task],
     });
+    closeCreateTaskModal();
   };
 
   const handleDrop = (e) => {
@@ -54,12 +64,12 @@ const Column = (props) => {
     });
   };
 
-  return (
-    <Card style={{width: "400px"}}>
+   return (
+    <Card style={{ width: "400px" }}>
       <CardContent>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
           <Typography variant="h6">{props.column.title}</Typography>
-         <IconButton color="primary" onClick={onClickAdd}>
+          <IconButton color="primary" onClick={openCreateTaskModal}>
             <AddIcon />
           </IconButton>
         </div>
@@ -77,6 +87,11 @@ const Column = (props) => {
             />
           ))}
         </div>
+        <CreateTaskModal
+          isOpen={isCreatingTask}
+          onClose={closeCreateTaskModal}
+          onCreate={handleCreateTask}
+        />
       </CardContent>
     </Card>
   );

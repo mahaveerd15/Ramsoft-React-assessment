@@ -4,24 +4,37 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { useState } from 'react';
+import EditTaskModal from './modal/EditTaskModal';
 
 const Task = (props) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedTitle, setEditedTitle] = useState(props.task.title);
+  const [editedDesc, setEditedDesc] = useState(props.task.desc);
+  const [editedDeadline, setEditedDeadline] = useState(props.task.deadline);
   const handleDragStart = (e) => {
     e.dataTransfer.setData("taskJson", JSON.stringify(props.task));
   };
 
-  const handleEdit = () => {
-    const title = prompt("Title");
-    const desc = prompt("Description");
-    const deadline = prompt("Deadline");
+ const openEditModal = () => {
+    setIsEditing(true);
+  };
+
+  const closeEditModal = () => {
+    setIsEditing(false);
+  };
+
+  const handleSaveEdit = () => {
     const updatedTask = {
       ...props.task,
-      title,
-      desc,
-      deadline
+      title: editedTitle,
+      desc: editedDesc,
+      deadline: editedDeadline,
     };
     props.updateTask(updatedTask);
+    closeEditModal();
   };
+
 
   const handleRemove = () => {
     const remove = window.confirm("Remove task?");
@@ -44,12 +57,15 @@ const Task = (props) => {
         <Typography variant="body1" paragraph>
           {props.task.desc}
         </Typography>
-        <IconButton
-          aria-label="edit"
-          onClick={handleEdit}
-        >
+        <IconButton aria-label="edit" onClick={openEditModal}>
           <EditIcon />
         </IconButton>
+        <EditTaskModal
+          isOpen={isEditing}
+          onClose={closeEditModal}
+          task={props.task}
+          onSave={handleSaveEdit}
+        />
         <IconButton
           aria-label="delete"
           onClick={handleRemove}
