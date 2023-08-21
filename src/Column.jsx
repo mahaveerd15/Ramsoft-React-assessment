@@ -65,7 +65,7 @@ const handleCreateTask = (title, desc, deadline) => {
   };
 
    return (
-    <Card style={{ width: "400px" }}>
+    <Card style={{ width: "400px", height: '100%' }}>
       <CardContent>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
           <Typography variant="h6">{props.column.title}</Typography>
@@ -76,7 +76,7 @@ const handleCreateTask = (title, desc, deadline) => {
         <div
           onDrop={handleDrop}
           onDragOver={handleDragOver}
-          style={{ padding: 20 }}
+          style={{ padding: '20px 5px 20px 5px' }}
         >
           {props.column.tasks.map((task) => (
             <Task

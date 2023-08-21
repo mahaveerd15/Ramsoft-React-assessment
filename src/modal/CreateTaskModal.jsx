@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Modal from '@mui/material/Modal';
-import { Typography, TextField, Button, Box } from '@mui/material';
+import { Typography, TextField, Button, Box, IconButton } from '@mui/material';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const CreateTaskModal = ({ isOpen, onClose, onCreate }) => {
   const [title, setTitle] = useState('');
@@ -11,6 +12,9 @@ const CreateTaskModal = ({ isOpen, onClose, onCreate }) => {
     if (title && desc && deadline) {
       onCreate(title, desc, deadline);
     }
+    setTitle('');
+    setDesc('');
+    setDeadline('');
   };
 
   return (
@@ -27,6 +31,11 @@ const CreateTaskModal = ({ isOpen, onClose, onCreate }) => {
           minWidth: 300,
         }}
       >
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '-15px' }}>
+          <IconButton onClick={onClose}>
+            <CancelIcon />
+          </IconButton>
+        </div>
         <Typography variant="h5" gutterBottom>
           Create New Task
         </Typography>

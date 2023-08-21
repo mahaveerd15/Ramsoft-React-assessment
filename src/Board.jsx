@@ -39,8 +39,10 @@ const Board = () => {
     setColumns(updatedColumns);
   };
 
-  const handleAddColumn = () => {
-    const title = prompt("Enter column title");
+ const handleAddColumn = () => {
+  const title = prompt("Enter column title");
+
+  if (title && title.trim() !== "") {
     const column = {
       title,
       tasks: [],
@@ -48,7 +50,8 @@ const Board = () => {
     };
     const updatedColumns = [...columns, column];
     setColumns(updatedColumns);
-  };
+  }
+};
 
   const moveTask = (task, fromColId, toColId) => {
     task = { ...task };

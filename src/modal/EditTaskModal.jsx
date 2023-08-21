@@ -1,17 +1,16 @@
-// EditTaskModal.jsx
-
 import { useState } from 'react';
 import Modal from '@mui/material/Modal';
-import { Typography, TextField, Button, Box } from '@mui/material';
+import { Typography, TextField, Button, Box, IconButton } from '@mui/material';
+import CancelIcon from '@mui/icons-material/Cancel';
 
-const EditTaskModal = ({ isOpen, onClose, task, onUpdate }) => {
+const EditTaskModal = ({ isOpen, onClose, task, onSave }) => {
   const [editedTitle, setEditedTitle] = useState(task.title);
   const [editedDesc, setEditedDesc] = useState(task.desc);
   const [editedDeadline, setEditedDeadline] = useState(task.deadline);
 
   const handleUpdate = () => {
     if (editedTitle && editedDesc && editedDeadline) {
-      onUpdate({
+      onSave({
         ...task,
         title: editedTitle,
         desc: editedDesc,
@@ -34,6 +33,11 @@ const EditTaskModal = ({ isOpen, onClose, task, onUpdate }) => {
           minWidth: 300,
         }}
       >
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '-15px' }}>
+          <IconButton onClick={onClose}>
+            <CancelIcon />
+          </IconButton>
+        </div>
         <Typography variant="h5" gutterBottom>
           Edit Task
         </Typography>

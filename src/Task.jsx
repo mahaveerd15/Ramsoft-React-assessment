@@ -9,9 +9,6 @@ import EditTaskModal from './modal/EditTaskModal';
 
 const Task = (props) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [editedTitle, setEditedTitle] = useState(props.task.title);
-  const [editedDesc, setEditedDesc] = useState(props.task.desc);
-  const [editedDeadline, setEditedDeadline] = useState(props.task.deadline);
   const handleDragStart = (e) => {
     e.dataTransfer.setData("taskJson", JSON.stringify(props.task));
   };
@@ -24,12 +21,10 @@ const Task = (props) => {
     setIsEditing(false);
   };
 
-  const handleSaveEdit = () => {
+  const handleSaveEdit = (editedTask) => {
     const updatedTask = {
       ...props.task,
-      title: editedTitle,
-      desc: editedDesc,
-      deadline: editedDeadline,
+      ...editedTask
     };
     props.updateTask(updatedTask);
     closeEditModal();

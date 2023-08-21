@@ -1,0 +1,17 @@
+// App.js
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Board from "./Board";
+import Home from "./Home";
+import "./styles.css"
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/board" element={<Board />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
