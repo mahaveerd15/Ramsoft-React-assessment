@@ -35,6 +35,7 @@ const Task = (props) => {
       draggable={true}
       onDragStart={handleDragStart}
       className="task-card"
+      style={{marginBottom: 10}}
     >
       <CardContent>
         <Typography variant="h6" gutterBottom>

@@ -57,7 +57,7 @@ const Column = (props) => {
   return (
     <Card style={{width: "400px"}}>
       <CardContent>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
           <Typography variant="h6">{props.column.title}</Typography>
          <IconButton color="primary" onClick={onClickAdd}>
             <AddIcon />
