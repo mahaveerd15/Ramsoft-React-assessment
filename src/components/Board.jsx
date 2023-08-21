@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Column from "./Column";
-import { getBoardData, setBoardData } from "./Data";
+import { getBoardData, setBoardData } from "../Data";
 import { Button, TextareaAutosize } from "@mui/material";
 
 const Board = () => {

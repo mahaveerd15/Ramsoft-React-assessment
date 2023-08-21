@@ -2,7 +2,7 @@ import Task from "./Task";
 import { useState } from 'react';
 import { Card, CardContent, Typography, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import CreateTaskModal from './modal/CreateTaskModal';
+import CreateTaskModal from '../modal/CreateTaskModal';
 
 
 const Column = (props) => {

@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useState } from 'react';
-import EditTaskModal from './modal/EditTaskModal';
+import EditTaskModal from '../modal/EditTaskModal';
 
 const Task = (props) => {
   const [isEditing, setIsEditing] = useState(false);
