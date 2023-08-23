@@ -1,6 +1,6 @@
 import Task from "./Task";
 import { useState } from 'react';
-import { Card, CardContent, Typography, IconButton } from '@mui/material';
+import { Card, CardContent, Typography, IconButton, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import CreateTaskModal from '../modal/CreateTaskModal';
 
@@ -64,11 +64,21 @@ const handleCreateTask = (title, desc, deadline) => {
     });
   };
 
+  const sortColumn = () => {
+    
+    const sortedarray = props.tasks.slice().sort((a, b) => a.title.localeCompare(b.title));
+    props.update(props.column.id, {
+      ...props.column,
+      sortedarray
+    });
+  }
+
    return (
     <Card style={{ width: "400px", height: '100%' }}>
       <CardContent>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-          <Typography variant="h6">{props.column.title}</Typography>
+           <Typography variant="h6">{props.column.title}</Typography>
+           <Button variant="contained" color="primary" onClick={sortColumn}>sort</Button>
           <IconButton color="primary" onClick={openCreateTaskModal}>
             <AddIcon />
           </IconButton>

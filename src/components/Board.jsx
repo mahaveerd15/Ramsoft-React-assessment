@@ -86,10 +86,10 @@ const Board = () => {
           );
         })}
       </div>
-      {/* <textarea
+      <textarea
         style={{ width: "100%", height: 400 }}
         value={JSON.stringify(columns, null, 2)}
-      /> */}
+      />
     </div>
   );
 };
